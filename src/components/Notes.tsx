@@ -5,6 +5,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 const Notes = () => {
+  // TODO: Students should implement state management for notes
+  // They should add:
+  // - useState for current note text
+  // - useState for saved notes array
+  // - Functions to save, edit, and delete notes
+
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    // TODO: Implement textarea change handler
+    console.log('Note text changed:', e.target.value);
+  };
+
+  const handleSaveNote = () => {
+    // TODO: Implement save note functionality
+    console.log('Save note clicked');
+  };
+
   return (
     <Card className="h-full">
       <CardHeader>
@@ -15,10 +31,12 @@ const Notes = () => {
           <Textarea 
             placeholder="Write your notes here..." 
             className="min-h-[120px] resize-none"
+            onChange={handleTextareaChange}
+            value="" // TODO: Connect to state
           />
           <div className="flex justify-between items-center">
             <span className="text-xs text-gray-500">Auto-saved</span>
-            <Button variant="outline" size="sm">Save Note</Button>
+            <Button variant="outline" size="sm" onClick={handleSaveNote}>Save Note</Button>
           </div>
         </div>
 
@@ -27,6 +45,7 @@ const Notes = () => {
         <div className="space-y-3">
           <h3 className="font-medium text-gray-900">Recent Notes</h3>
           
+          {/* TODO: Students should make this dynamic based on saved notes state */}
           <div className="space-y-2">
             <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
               <div className="flex justify-between items-start mb-2">

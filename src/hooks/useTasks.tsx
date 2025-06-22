@@ -9,7 +9,14 @@ export interface Task {
 }
 
 export const useTasks = () => {
-  const [tasks, setTasks] = useState<Task[]>([
+  // TODO: Implement state management for tasks
+  // Students should implement:
+  // - useState for tasks array
+  // - addTask function
+  // - toggleTask function
+  // - computed values for totalCount and completedCount
+  
+  const tasks: Task[] = [
     {
       id: '1',
       text: 'Complete project documentation',
@@ -28,33 +35,23 @@ export const useTasks = () => {
       priority: 'Low',
       completed: true,
     },
-  ]);
+  ];
 
   const addTask = (text: string, priority: 'High' | 'Medium' | 'Low') => {
-    const newTask: Task = {
-      id: Date.now().toString(),
-      text,
-      priority,
-      completed: false,
-    };
-    setTasks(prev => [...prev, newTask]);
+    // TODO: Implement add task functionality
+    console.log('Add task:', text, priority);
   };
 
   const toggleTask = (id: string) => {
-    setTasks(prev =>
-      prev.map(task =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
+    // TODO: Implement toggle task functionality
+    console.log('Toggle task:', id);
   };
-
-  const completedCount = tasks.filter(task => task.completed).length;
 
   return {
     tasks,
     addTask,
     toggleTask,
-    totalCount: tasks.length,
-    completedCount,
+    totalCount: 0, // TODO: Calculate from tasks array
+    completedCount: 0, // TODO: Calculate completed tasks
   };
 };

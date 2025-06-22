@@ -9,21 +9,41 @@ import { useTasks } from "@/hooks/useTasks";
 
 const TaskManager = () => {
   const { tasks, addTask, toggleTask, totalCount, completedCount } = useTasks();
-  const [newTaskText, setNewTaskText] = useState("");
-  const [newTaskPriority, setNewTaskPriority] = useState<'High' | 'Medium' | 'Low'>('Medium');
+  
+  // TODO: Implement state for form inputs
+  // Students should add:
+  // - useState for newTaskText
+  // - useState for newTaskPriority
+  const newTaskText = "";
+  const newTaskPriority = 'Medium';
 
   const handleAddTask = () => {
-    if (newTaskText.trim()) {
-      addTask(newTaskText.trim(), newTaskPriority);
-      setNewTaskText("");
-      setNewTaskPriority('Medium');
-    }
+    // TODO: Implement add task logic
+    // Students should:
+    // - Validate input
+    // - Call addTask function
+    // - Reset form
+    console.log('Handle add task');
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleAddTask();
-    }
+    // TODO: Implement enter key handling
+    console.log('Key pressed:', e.key);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // TODO: Implement input change handler
+    console.log('Input changed:', e.target.value);
+  };
+
+  const handlePriorityChange = (value: 'High' | 'Medium' | 'Low') => {
+    // TODO: Implement priority change handler
+    console.log('Priority changed:', value);
+  };
+
+  const handleToggleTask = (id: string) => {
+    // TODO: Implement task toggle handler
+    console.log('Toggle task:', id);
   };
 
   const getPriorityVariant = (priority: string) => {
@@ -51,10 +71,10 @@ const TaskManager = () => {
               placeholder="Add a new task..." 
               className="flex-1"
               value={newTaskText}
-              onChange={(e) => setNewTaskText(e.target.value)}
+              onChange={handleInputChange}
               onKeyPress={handleKeyPress}
             />
-            <Select value={newTaskPriority} onValueChange={(value: 'High' | 'Medium' | 'Low') => setNewTaskPriority(value)}>
+            <Select value={newTaskPriority} onValueChange={handlePriorityChange}>
               <SelectTrigger className="w-32">
                 <SelectValue />
               </SelectTrigger>
@@ -76,7 +96,7 @@ const TaskManager = () => {
                   type="checkbox" 
                   className="rounded" 
                   checked={task.completed}
-                  onChange={() => toggleTask(task.id)}
+                  onChange={() => handleToggleTask(task.id)}
                 />
                 <span className={`text-gray-700 ${task.completed ? 'line-through text-gray-500' : ''}`}>
                   {task.text}
